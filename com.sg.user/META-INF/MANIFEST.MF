@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: User
+Bundle-SymbolicName: com.sg.user;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.sg.user.UserService
+Bundle-Vendor: SG
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.rap.ui;bundle-version="1.5.0",
+ com.sg.db;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Export-Package: com.sg.user,
+ com.sg.user.ui

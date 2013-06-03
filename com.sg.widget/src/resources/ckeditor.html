@@ -1,0 +1,26 @@
+<html>
+<head>
+  <script type="text/javascript" src="./ckeditor.js"></script>
+  <script type="text/javascript">
+    rap = {};
+    rap.init = false;
+    rap.createEditor = function() {
+      rap.editor = CKEDITOR.appendTo( document.body );
+      rap.editor.on( "dataReady", function() {
+        if( !rap.init ) {
+          rap.init = true;
+          // NOTE [tb] : does not work in uiReady for some reason:
+          rap.editor.execCommand( "maximize" );
+        }
+        try {
+          rap_ready(); // Browser function
+        } catch( ex ) {
+          alert( "CKEditor ready error:  " + ex );
+        }
+      } );
+    }
+  </script>
+</head>
+<body onload = "rap.createEditor()" >
+</body>
+</html>

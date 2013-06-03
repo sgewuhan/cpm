@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="query" name="Query" schema="schema/query.exsd"/>
+   <extension-point id="insert" name="Insert" schema="schema/insert.exsd"/>
+   <extension-point id="cascade" name="Cascade" schema="schema/cascade.exsd"/>
+   <extension-point id="modify" name="Modify" schema="schema/modify.exsd"/>
+   <extension-point id="remove" name="Remove" schema="schema/remove.exsd"/>
+   <extension
+         point="org.eclipse.equinox.http.registry.servlets">
+      <servlet
+            alias="/dbs"
+            class="com.sg.db.http.DBService">
+      </servlet>
+      <servlet
+            alias="/cascadequery"
+            class="com.sg.db.http.CascadeQueryService">
+      </servlet>
+      <servlet
+            alias="/queryupdate"
+            class="com.sg.db.http.QueryUpdateService">
+      </servlet>
+      <servlet
+            alias="/sys/generateid"
+            class="com.sg.db.http.IDGenerator">
+      </servlet>
+      <servlet
+            alias="/sys/getoid"
+            class="com.sg.db.http.GetObjectId">
+      </servlet>
+      <servlet
+            alias="/sys/initSeq"
+            class="com.sg.db.http.InitSequence">
+      </servlet>
+   </extension>
+</plugin>

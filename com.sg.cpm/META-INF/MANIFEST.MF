@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Cloud Project
+Bundle-SymbolicName: com.sg.cpm; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.sg.cpm.Activator
+Bundle-Vendor: SG
+Require-Bundle: com.sg.widget;bundle-version="1.0.0",
+ com.sg.cpm.admin;bundle-version="1.0.0",
+ com.sg.db;bundle-version="1.0.0",
+ com.sg.common;bundle-version="1.0.0",
+ com.sg.cpm.project;bundle-version="1.0.0",
+ com.sg.user;bundle-version="1.0.0",
+ org.eclipse.rap.ui.forms;bundle-version="1.5.0",
+ com.sg.resource;bundle-version="1.0.0",
+ org.eclipse.core.runtime;bundle-version="3.8.0",
+ org.eclipse.rap.ui;bundle-version="1.5.0",
+ com.sg.vault;bundle-version="1.0.0",
+ com.sg.cpm.myworks;bundle-version="1.0.0",
+ com.sg.design;bundle-version="1.5.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Import-Package: javax.servlet,
+ javax.servlet.http

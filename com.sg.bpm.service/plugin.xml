@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="actorRule" name="ActorRule" schema="schema/actorRule.exsd"/>
+   <extension-point id="serviceTask" name="ServiceTask" schema="schema/serviceTask.exsd"/>
+
+</plugin>

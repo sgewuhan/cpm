@@ -1,0 +1,353 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.sg.ui" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="com.sg.ui" id="queryTableViewer" name="QueryTableViewer"/>
+      </appinfo>
+      <documentation>
+         [Enter description of this extension point.]
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <choice>
+            <element ref="tree" minOccurs="1" maxOccurs="unbounded"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="tree">
+      <complexType>
+         <choice>
+            <sequence>
+               <element ref="column" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+         </choice>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="query" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="com.sg.db.cascade/singleObject/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="headerVisiable" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  default true
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="multiSelection" type="boolean">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="lineVisiable" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  default true
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="useHashlookup" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  default false
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="fullSelection" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="contentProvider" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.jface.viewers.IContentProvider"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="popup" type="string">
+            <annotation>
+               <documentation>
+                  display popupmenu, enpty for no popup
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.viewer.IViewerPopupCreator"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="doubleClickListener" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.jface.viewers.IDoubleClickListener"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="deleteHandler" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.viewer.IDeleteHandler"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="bindingPartId" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="markupEnabled" type="boolean">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="customItemHeight" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="autoExpandLevel" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="column">
+      <complexType>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  header text
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="column" type="string">
+            <annotation>
+               <documentation>
+                  SQL Result Column name
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="type" use="required">
+            <annotation>
+               <documentation>
+                  字段的数据类型
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="String">
+                  </enumeration>
+                  <enumeration value="Boolean">
+                  </enumeration>
+                  <enumeration value="Integer">
+                  </enumeration>
+                  <enumeration value="Double">
+                  </enumeration>
+                  <enumeration value="Date">
+                  </enumeration>
+                  <enumeration value="Time">
+                  </enumeration>
+                  <enumeration value="File">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="style">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="SWT.LEFT">
+                  </enumeration>
+                  <enumeration value="SWT.CENTER">
+                  </enumeration>
+                  <enumeration value="SWT.RIGHT">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="image" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="width" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="moveable" type="boolean">
+            <annotation>
+               <documentation>
+                  defualt true
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="resizable" type="boolean">
+            <annotation>
+               <documentation>
+                  defualt true
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="toolTipText" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="editingSupport" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.configuration.IEditingSupportor"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="sorter" type="boolean">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="labelProvider" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.jface.viewers.ColumnLabelProvider:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="columnSorter" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.viewer.tableviewer.sorter.IColumnSortor"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

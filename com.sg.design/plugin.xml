@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="editorAreaPart" name="EditorAreaPart" schema="schema/editorAreaPart.exsd"/>
+   <extension-point id="headAreaPart" name="HeadAreaPart" schema="schema/headAreaPart.exsd"/>
+   <extension
+         point="org.eclipse.ui.presentationFactories">
+      <factory
+            class="com.sg.design.business.BusinessPresentationFactory"
+            id="com.sg.design.business.factory"
+            name="Business Presentation Factory">
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.rap.ui.layouts">
+      <layout
+            id="com.sg.design.business.layout"
+            name="Business Layout Blue">
+         <layoutSet
+               class="com.sg.design.business.layoutsets.LogoInitializer"
+               id="com.sg.design.layoutset.logo"
+               name="Logo">
+         </layoutSet>
+         <layoutSet
+               class="com.sg.design.business.layoutsets.HeaderInitializer"
+               id="com.sg.design.layoutset.header"
+               name="Header">
+         </layoutSet>
+         <layoutSet
+               class="com.sg.design.business.layoutsets.FooterInitializer"
+               id="com.sg.design.layoutset.footer"
+               name="Footer">
+         </layoutSet>
+         <layoutSet
+               class="com.sg.design.business.layoutsets.MenuBarInitializer"
+               id="com.sg.design.layoutset.menubar"
+               name="MenuBar">
+         </layoutSet>
+         <layoutSet
+               class="com.sg.design.business.layoutsets.PerspectiveSwitcherInitializer"
+               id="com.sg.design.layoutset.perspective"
+               name="Perspective Switcher">
+         </layoutSet>
+         <layoutSet
+               class="com.sg.design.business.layoutsets.StackInitializer"
+               id="com.sg.design.layoutset.stack"
+               name="Business Stack">
+         </layoutSet>
+         <layoutSet
+               class="com.sg.design.business.layoutsets.ConfigDialogInitializer"
+               id="com.sg.design.layoutset.confdialog"
+               name="Config Dialog">
+         </layoutSet>
+         <layoutSet
+               class="com.sg.design.business.layoutsets.CoolbarInitializer"
+               id="com.sg.design.layoutset.coolbar"
+               name="Coolbar">
+         </layoutSet>
+         <layoutSet
+               class="com.sg.design.business.layoutsets.CoolbarOverflowInitializer"
+               id="com.sg.design.layoutset.coolbaroverflow"
+               name="Coolbar Overflow">
+         </layoutSet>
+      </layout>
+   </extension>
+   <extension
+         point="org.eclipse.rap.ui.themes">
+      <theme
+            file="theme/business/business.css"
+            id="com.sg.design.business.theme"
+            name="Business Theme">
+      </theme>
+   </extension>
+   <extension
+         point="org.eclipse.rap.ui.stackPresentations">
+      <stackPresentation
+            actionClass="com.sg.design.stacks.ConfigAction"
+            class="com.sg.design.stacks.ViewStackPresentation"
+            id="com.sg.design.stack.view"
+            name="Simple Stack Presentation"
+            type="view">
+      </stackPresentation>
+   </extension>
+   <extension
+         point="org.eclipse.rap.ui.branding">
+      <branding
+            id="com.sg.design.branding"
+            themeId="com.sg.design.business.theme"
+            title="SG Design">
+         <presentationFactory
+               defaultLayoutId="com.sg.design.business.layout"
+               id="com.sg.design.business.factory"
+               viewActionsVisible="true">
+            <defaultStackPresentation
+                  id="com.sg.design.stack.view">
+            </defaultStackPresentation>
+         </presentationFactory>
+      </branding>
+   </extension>
+
+</plugin>

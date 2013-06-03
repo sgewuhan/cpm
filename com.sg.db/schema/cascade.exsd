@@ -1,0 +1,423 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.sg.db" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="com.sg.db" id="cascade" name="Cascade"/>
+      </appinfo>
+      <documentation>
+         [Enter description of this extension point.]
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <choice minOccurs="1" maxOccurs="unbounded">
+            <element ref="cascadeContext" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="singleObject" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="listObject" minOccurs="0" maxOccurs="unbounded"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="cascadeContext">
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="singleObject">
+      <annotation>
+         <documentation>
+            获得当前的对象：
+有三种方法可以创建CascadeObject对象。
+第一种，给出objectId和collection, 将直接从数据库中查询出该对象
+第二种，实现dataProvider, 返回该对象
+第三种，可定义多个key_value，实例化一个DBObject,并按照Key value赋值
+扩展点按照以上的顺序优先级创建对象
+
+获得下级对象：
+该对象可以根据listObject的定义得到下级的对象。
+
+接受参数：
+可以定义多个参数parameter，并在第三种获得当前对象的方法中传递到key value对应的singleValue中
+
+传递参数：
+定义的parameterEvaluation，可传递到listObject中
+         </documentation>
+      </annotation>
+      <complexType>
+         <choice minOccurs="0" maxOccurs="unbounded">
+            <element ref="key_value" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="listObject"/>
+            <element ref="parameter"/>
+            <element ref="parameterEvaluation"/>
+            <element ref="extensionObject"/>
+         </choice>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="collection" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="objectId" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="dataProvider" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.db.model.IDBObjectProvider"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="cascadeContext" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="com.sg.db.cascade/cascadeContext/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="listObject">
+      <annotation>
+         <documentation>
+            首先判断是否实现了childrenProvider
+如果没有实现childrenProvider,那么就按照顺序取
+singleObjectDefinition和查询表达式。
+注意，如果同时定义了singleObjectDifinition和查询表达式，
+那么，这些定义都会按照顺序返回对象列表
+注意，listObject所在的Singleobject传入的参数对于childrenProvider和查询表达式有效
+但是对于SingleObjectDefinition无效
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="singleObjectDefinition"/>
+            <element ref="queryExpressionDefinition"/>
+         </sequence>
+         <attribute name="childrenProvider" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.db.model.IChildrenProvider"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="extensionObject">
+      <annotation>
+         <documentation>
+            与List相似，但是extensionObject在SingleObject的LoadData时加载。
+并可以直接通过getValue()取值。下面的queryExpressionDefinition也只返回一条记录
+
+首先判断是否实现了childrenProvider
+如果没有实现childrenProvider,那么就按照顺序取
+singleObjectDefinition和查询表达式。
+注意，如果同时定义了singleObjectDifinition和查询表达式，
+那么，这些定义都会按照顺序返回对象列表
+注意，listObject所在的Singleobject传入的参数对于childrenProvider和查询表达式有效
+但是对于SingleObjectDefinition无效
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="queryExpressionDefinition"/>
+         </sequence>
+         <attribute name="childrenProvider" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.db.model.IChildrenProvider"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="fieldPrefix" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="key_value">
+      <complexType>
+         <choice minOccurs="0" maxOccurs="unbounded">
+            <element ref="singleValue" minOccurs="0" maxOccurs="unbounded"/>
+         </choice>
+         <attribute name="fieldName" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="singleValue">
+      <complexType>
+         <attribute name="value" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="valueType" use="required">
+            <annotation>
+               <documentation>
+                  字段的数据类型
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="String">
+                  </enumeration>
+                  <enumeration value="Boolean">
+                  </enumeration>
+                  <enumeration value="Integer">
+                  </enumeration>
+                  <enumeration value="Double">
+                  </enumeration>
+                  <enumeration value="Date">
+                  </enumeration>
+                  <enumeration value="ObjectId">
+                  </enumeration>
+                  <enumeration value="Long">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="parameter" type="string">
+            <annotation>
+               <documentation>
+                  填写参数的名称，这个参数可以是从外部输入的
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="singleObjectDefinition">
+      <complexType>
+         <attribute name="singleObjectId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="com.sg.db.cascade/singleObject/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="parameterEvaluation">
+      <complexType>
+         <attribute name="getValueFromWhichKey" type="string" use="required">
+            <annotation>
+               <documentation>
+                  从当前的SingleObject对象上取出哪一个字段的值，传递到查询的参数中。这个值是该字段的名称
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="putValueFromWhichParameter" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn=""/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="parameter">
+      <complexType>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  参数的名称，指定这个参数的名称，可用于传递parameterEvluation的putValueFromWhichParameter
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="queryExpressionDefinition">
+      <complexType>
+         <attribute name="singleObjectId" type="string">
+            <annotation>
+               <documentation>
+                  可以指定一个已经定义的SingleObject的ID, 如果已经指定这个，级联的查询的每条记录都将转向使用这个SingleobjectID的定义，一般情况下可以不定义
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="com.sg.db.cascade/singleObject/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="queryExpression" type="string">
+            <annotation>
+               <documentation>
+                  使用的查询的表达式
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="com.sg.db.query/queryExpression/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="collection" type="string">
+            <annotation>
+               <documentation>
+                  指定对应的集合，如果指定，可以用于修改和保存这条记录
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="acceptRootParameter" type="boolean">
+            <annotation>
+               <documentation>
+                  是否接受外部传入的参数，在使用CascadeObject的Run方法时，可以传递外部参数。这些参数应用到级联的哪些查询上，可以通过这个开关来控制
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="acceptRootSkipAndLimit" type="boolean">
+            <annotation>
+               <documentation>
+                  是否接受外部传入的参数，在使用CascadeObject的Run方法时，可以传递外部参数。这些参数应用到级联的哪些查询上，可以通过这个开关来控制
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="acceptRootSortFields" type="boolean">
+            <annotation>
+               <documentation>
+                  是否接受外部传入的参数，在使用CascadeObject的Run方法时，可以传递外部参数。这些参数应用到级联的哪些查询上，可以通过这个开关来控制
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="acceptRootReturnFields" type="boolean">
+            <annotation>
+               <documentation>
+                  是否接受外部传入的参数，在使用CascadeObject的Run方法时，可以传递外部参数。这些参数应用到级联的哪些查询上，可以通过这个开关来控制
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

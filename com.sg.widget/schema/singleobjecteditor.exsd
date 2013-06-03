@@ -1,0 +1,835 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.sg.widget" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="com.sg.widget" id="singleobjecteditor" name="SingleObjectEditor"/>
+      </appinfo>
+      <documentation>
+         单个对象的编辑器定义
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <choice minOccurs="1" maxOccurs="unbounded">
+            <element ref="editor"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="editor">
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="basicpage"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  编辑器名称
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="collectionName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="image" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="titleToolTips" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="labelFieldName" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="saveHandler" type="string">
+            <annotation>
+               <documentation>
+                  暂时未实现
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.editor.saveHandler.IEditorSaveHandler"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="editorDelegator" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.editor.IEditorDelegator"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="recreateable" type="boolean">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="exportType">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="excel">
+                  </enumeration>
+                  <enumeration value="word">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="exportParameter" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.editor.export.IExportParameterProvider"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="basicpage">
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="pagecolumn"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="title" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="image" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="pageHeadDelegator" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.editor.IEditorPageHeadDelegator"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="pageDelegator" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.editor.IPageDelegator"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="pagecolumn">
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="section"/>
+         </sequence>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="section">
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="field" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="fieldgroup" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="label" type="string" use="required">
+            <annotation>
+               <documentation>
+                  显示名称
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  section 的描述
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="expand" type="boolean">
+            <annotation>
+               <documentation>
+                  是否在打开时展开Section, 默认展开
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="field">
+      <complexType>
+         <choice minOccurs="0" maxOccurs="unbounded">
+            <sequence minOccurs="0" maxOccurs="unbounded">
+               <element ref="fieldaction"/>
+            </sequence>
+            <sequence minOccurs="0" maxOccurs="unbounded">
+               <element ref="column"/>
+            </sequence>
+         </choice>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  名称对应字段别名
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="label" type="string">
+            <annotation>
+               <documentation>
+                  字段显示的名称
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="labelVisible" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  名称是否显示，默认为true（如：boolean类型的字段，用checkBox显示时，名称是可以不用显示的）
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="tooltips" type="string">
+            <annotation>
+               <documentation>
+                  提示信息
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="visible" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="type" use="required">
+            <annotation>
+               <documentation>
+                  字段的数据类型
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="String">
+                  </enumeration>
+                  <enumeration value="Boolean">
+                  </enumeration>
+                  <enumeration value="Integer">
+                  </enumeration>
+                  <enumeration value="Double">
+                  </enumeration>
+                  <enumeration value="Date">
+                  </enumeration>
+                  <enumeration value="Time">
+                  </enumeration>
+                  <enumeration value="File">
+                  </enumeration>
+                  <enumeration value="DBObject">
+                  </enumeration>
+                  <enumeration value="ObjectId">
+                  </enumeration>
+                  <enumeration value="DBList">
+                  </enumeration>
+                  <enumeration value="StringList">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="editPart" use="required">
+            <annotation>
+               <documentation>
+                  界面上的显示形式
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="Text(Single Line)">
+                  </enumeration>
+                  <enumeration value="Text(Multi Line)">
+                  </enumeration>
+                  <enumeration value="Combo(Read Only)">
+                  </enumeration>
+                  <enumeration value="Combo">
+                  </enumeration>
+                  <enumeration value="SelectionDialog">
+                  </enumeration>
+                  <enumeration value="Radio">
+                  </enumeration>
+                  <enumeration value="ChechBox">
+                  </enumeration>
+                  <enumeration value="DateDialog">
+                  </enumeration>
+                  <enumeration value="DateBox">
+                  </enumeration>
+                  <enumeration value="DateDrop">
+                  </enumeration>
+                  <enumeration value="TimeBox">
+                  </enumeration>
+                  <enumeration value="Spinner">
+                  </enumeration>
+                  <enumeration value="FileUploader">
+                  </enumeration>
+                  <enumeration value="FileUploader(Multi)">
+                  </enumeration>
+                  <enumeration value="HtmlArea">
+                  </enumeration>
+                  <enumeration value="Table">
+                  </enumeration>
+                  <enumeration value="List">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="computeField" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  是否是计算字段，如果选择是，那么需要把字段类型选择为 text, string
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="heightHint" type="string">
+            <annotation>
+               <documentation>
+                  输入数字，表示多行文本框的高度（只对多行文本框有效）multiLineTextBoxHeight
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="widthHint" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="editable" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  是否可以修改
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="editableHandler" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.editor.field.editable.IEditableHandler"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="persistable" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="required" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  是否可以为空（默认可以为空）
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="option" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="com.sg.widget.resource/enumerate/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="optionProvider" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.editor.field.option.IOptionProvider"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="textMessage" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultValue" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultValueProvider" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.editor.field.defaultvalue.IDefaultValueProvider"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="presentation" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.editor.field.presentation.IValuePresentation"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="presentationFormat" type="string">
+            <annotation>
+               <documentation>
+                  yy/MM/dd HH:mm
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="inputValidator" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.editor.field.validator.IInputValidator"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="spinnerSetting" type="string">
+            <annotation>
+               <documentation>
+                  0,1000,1,100
+min,max,increase,pageincrease
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="textLimit" type="string">
+            <annotation>
+               <documentation>
+                  仅对文本框，combo可写有效，输入数字，如果具有文本数量限制时，可以显示文本Tooltip对话框
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="nameSpace" type="string">
+            <annotation>
+               <documentation>
+                  如果该字段的type是文件类型，那么可以指定这个file字段存储在哪一个gridFS中，如果不指定，默认存储在该字段所在的collectionname+下划线+fs中。
+例如：这个字段的名称为projectName, collection为project,如果没有选择该字段的GridFS命名，那么默认保存在 project_fs中。填写这个配置属性可以自由命名，但通常的规则是 XXXXX_fs。
+文件类型的字段在当前的SingleObject中保存为一个字符串列表类型。
+通过文件命名空间和字段的列表的每一项的值可以来检索该文件
+只可以使用两种类型的编辑器来编辑该字段，FileUploader或者MultiFileUploader。无论是使用的哪一种，都只能保存文件列表。
+在没有提交保存的时候，这些临时的文件是暂时上传到服务器的临时空间。如果编辑器保存，临时空间中的文件将被保存到服务器的GridFS
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="tagAnalysis" type="boolean">
+            <annotation>
+               <documentation>
+                  是否对这个记录进行标签分析。这个在保存的时候进行。
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="isPassword" type="boolean">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="openClean" type="boolean">
+            <annotation>
+               <documentation>
+                  打开时清空内容
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="saveHistory" type="boolean">
+            <annotation>
+               <documentation>
+                  保存到历史记录
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="headerVisiable" type="boolean">
+            <annotation>
+               <documentation>
+                  default true table field use only
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="lineVisiable" type="boolean">
+            <annotation>
+               <documentation>
+                  table field use only
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="markupEnabled" type="boolean">
+            <annotation>
+               <documentation>
+                  table field use only
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="customItemHeight" type="string">
+            <annotation>
+               <documentation>
+                  table field use only
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="addTableItemHandler" type="string">
+            <annotation>
+               <documentation>
+                  table field use only
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.editor.field.IAddTableItemHandler"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="dataSelectorCollection" type="string">
+            <annotation>
+               <documentation>
+                  table use only
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="column">
+      <complexType>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  header text
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="column" type="string">
+            <annotation>
+               <documentation>
+                  SQL Result Column name
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="type" use="required">
+            <annotation>
+               <documentation>
+                  字段的数据类型
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="String">
+                  </enumeration>
+                  <enumeration value="Boolean">
+                  </enumeration>
+                  <enumeration value="Integer">
+                  </enumeration>
+                  <enumeration value="Double">
+                  </enumeration>
+                  <enumeration value="Date">
+                  </enumeration>
+                  <enumeration value="Time">
+                  </enumeration>
+                  <enumeration value="File">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="style">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="SWT.LEFT">
+                  </enumeration>
+                  <enumeration value="SWT.CENTER">
+                  </enumeration>
+                  <enumeration value="SWT.RIGHT">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="image" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="width" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="moveable" type="boolean">
+            <annotation>
+               <documentation>
+                  defualt true
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="resizable" type="boolean">
+            <annotation>
+               <documentation>
+                  defualt true
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="toolTipText" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="editingSupport" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.jface.viewers.EditingSupport:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="sorter" type="boolean">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="labelProvider" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.jface.viewers.ColumnLabelProvider:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="columnSorter" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.viewer.tableviewer.sorter.IColumnSortor"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="fieldaction">
+      <complexType>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="image" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="handler" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":com.sg.widget.editor.IFieldActionHandler"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="fieldgroup">
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="field"/>
+         </sequence>
+         <attribute name="columnCount" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>
