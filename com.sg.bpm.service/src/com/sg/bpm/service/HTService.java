@@ -44,7 +44,6 @@ public class HTService {
 		Thread thread = new Thread(taskServer);
 		thread.start();
 		
-		
 	}
 	
 

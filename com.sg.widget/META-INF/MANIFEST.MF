@@ -55,4 +55,6 @@ Export-Package: com.sg.widget,
  com.sg.widget.viewer.search,
  com.sg.widget.viewer.sorter,
  com.sg.widget.viewer.tableviewer,
- com.sg.widget.viewer.treeviewer
+ com.sg.widget.viewer.treeviewer,
+ org.apache.poi.openxml4j.opc,
+ org.apache.poi.xssf.usermodel

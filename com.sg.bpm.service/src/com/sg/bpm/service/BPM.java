@@ -44,7 +44,6 @@ public class BPM implements BundleActivator {
 	 * )
 	 */
 	public void start(BundleContext bundleContext) throws Exception {
-
 		BPM.context = bundleContext;
 		bundle = this;
 		loadConfiguration();
@@ -146,7 +145,6 @@ public class BPM implements BundleActivator {
 	 * org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext bundleContext) throws Exception {
-
 		stopBPMService();
 		stopTaskService();
 
